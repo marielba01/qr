@@ -3,38 +3,62 @@ import QrReader from 'react-qr-reader'
 
 // import QrReader from 'react-qr-scanner'
 
-
-class Test extends Component {
-  state = {
-  result: ''
+class QrContainner extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      result: 'Hold QR Code Steady and Clear to scan',
+    }
+    this.handleScan = this.handleScan.bind(this)
   }
 
   handleScan(data){
-    this.setState({
-      result: data,
-    })
-  }
+      this.setState({
+        result: data,
+      })
+    console.log(data)
+    }
+
   handleError(err){
     console.error(err)
   }
+
   render(){
     const previewStyle = {
-      height: 240,
-      width: 320,
+      height: 400,
+      width: 400,
+      display: 'flex',
+      "justify-content": "center"
     }
 
-    return(
-      <div>
-        <QrReader
-          delay={this.state.delay}
-          style={previewStyle}
-          onError={this.handleError}
-          onScan={this.handleScan}
+    const camStyle = {
+      display: 'flex',
+      justifyContent: "center",
+      marginTop: '-50px'
+    }
+    
+    const textStyle = {
+      fontSize: '30px',
+      "text-align": 'center',
+      marginTop: '-50px'
+    }
+
+    return (
+      <React.Fragment>
+        <div style = {camStyle}>
+          <QrReader
+            delay={100}
+            style={previewStyle}
+            onError={this.handleError}
+            onScan={this.handleScan}
           />
-        <p>{this.state.result}</p>
-      </div>
+          <p style = {textStyle}>
+            {this.state.result}
+          </p>
+        </div>
+      </React.Fragment>
     )
   }
-}
 
-export default Test;
+}
+export default QrContainner;
