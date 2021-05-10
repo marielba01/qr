@@ -2,39 +2,74 @@ import React, { Component } from 'react'
 import { styles } from '../constants';
 import { Grid, withStyles, Paper, TextField, Button, Typography } from '@material-ui/core';
 import CODIGO from './img/codigo.jpg';
+import AUTENTICACION from './img/autenticacion.jpg';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const labels = JSON.parse(localStorage.getItem("labels"))
+export default function FormDialog() {
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
-class princi extends Component {
-    render() {
+
         return (
             <> 
               <Grid container>
                     <Grid item xs={12} >
-                        <div  style={{ marginTop: 100}}>
-                            <Typography>
-                                <h1 style={{color: '#535355', fontSize: '18px', marginTop:50, padding: 50, marginLeft:20}}>____Aliados Comerciales</h1>
+                     
+                        
+                        <img src={ AUTENTICACION } style={{ width:1350, height:620}} />
+                            <Typography  style={{color: 'white', fontSize: '30px', marginTop:-620, textAlign:'center', padding: 20, fontWeight: 'bold', marginLeft:350, marginRight:300}}>
+                                ¡Bienvenido al Sistema de Autenticacion QR!
                             </Typography>
-                            <Typography  style={{color: 'black', fontSize: '40px', marginTop:-40, textAlign:'center', padding: 50, fontWeight: 'bold', marginLeft:350, marginRight:300}}>
-                                ¡Marcamos la diferencia!
-                            </Typography>
+                            <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{ marginTop:-10, marginLeft:600}}>
+                                <Typography style={{color: 'white', textAlign: 'center',fontSize: '15px'}}>
+                                <b><u> Hacer Click Aqui</u> </b>
+                                </Typography>
+                            </Button>
+                            
+                            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+       
+                                <DialogContent>
+                                <img src={ CODIGO } style={{  marginLeft:5, marginTop:1, width:500, height:450}} /> 
+                                
+                                <Button variant="outlined" color="primary" onClick={handleClickOpen} style={{ marginTop:-10, marginLeft:10}}>
+                                <Typography style={{color: 'black', textAlign: 'center',fontSize: '15px'}}>
+                                <b><u>  Si deseas escanear tu identificacion, </u> </b>
+                                <a href="http://localhost:3000/">Hacer Click Aqui</a>
 
-                            <Typography  style={{color: 'black', fontSize: '40px',fontWeight: 'bold', marginTop:-100, textAlign:'center', padding: 50, marginLeft:300, marginRight:280}}>
-                                Y nuestros aliados lo confirman.
-                            </Typography>
+                                </Typography>
+                            </Button>
+                                
 
-                        </div>
 
-                        <img src={ CODIGO } style={{ position: 'relative',  marginLeft:230, marginTop:50, width:200, height:250}} /> 
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={handleClose} color="primary">
+                                        Cancel
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+         
+                        
+
+                        
                     </Grid>
                 </Grid>
 
                 </>
         );
     }
-}
 
 
-const principal = withStyles(styles, { withTheme: true })(princi)
 
-export default princi;

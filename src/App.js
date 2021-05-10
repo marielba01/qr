@@ -6,7 +6,7 @@ import {
 import logo from './logo.svg';
 import './App.css';
 import QR from './components/qr';
-import principal from './components/principal'
+import Principal from './components/principal';
 
 
 
@@ -15,12 +15,13 @@ function App() {
 return (
   <Router>
     <Switch>
-  
+
       <Route exact path="/">
         <QR/>
       </Route>
+
       <Route path="/principal">
-        <principal />
+        <Principal/>
       </Route>
       
     </Switch>
